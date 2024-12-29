@@ -1,0 +1,53 @@
+---
+// Define los posibles valores para las propiedades 'variant' y 'size'.
+type Variant = "primary" | "secondary" | "danger";
+type Size = "small" | "medium" | "large";
+
+// Props del componente con tipos estrictos.
+interface ButtonProps {
+  variant?: Variant;
+  size?: Size;
+  className?: string;
+  type?: "button" | "submit" | "reset";
+  href?: string;
+  icon?: boolean;
+}
+
+// Extraemos las props con un tipo explícito.
+const {
+  variant = "primary",
+  size = "medium",
+  className = "",
+  type = "button",
+  href = "",
+  icon = false,
+}: ButtonProps = Astro.props;
+
+// Clases predeterminadas por variante.
+const variantClasses = {
+  primary: "bg-zinc-50 text-gray-950",
+  secondary: "bg-gray-500 text-white hover:bg-gray-600",
+  danger: "bg-red-500 text-white hover:bg-red-600",
+};
+
+
+// Clases predeterminadas por tamaño.
+const sizeClasses = {
+  small: "px-4 py-1 text-sm",
+  medium: "px-6 py-2 text-base",
+  large: "px-8 py-3 text-lg",
+};
+
+// Clases adicionales para el icono.
+let iconClass = "";
+if (icon) {
+  iconClass = "flex items-center justify-between gap-2";
+};
+
+// Combinar clases finales.
+const classes = `${variantClasses[variant]} ${sizeClasses[size]} ${className} ${iconClass} rounded-lg transition-all hover:scale-110 active:scale-90`;
+---
+
+<a type={type} class={classes} href={href}>
+  <slot />
+</a>

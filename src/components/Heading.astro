@@ -1,0 +1,49 @@
+---
+import type { HTMLTag, Polymorphic } from "astro/types";
+
+type Variant = "primary" | "secondary" | "danger" | "success" | "warning" | "info";
+type Size = "small" | "medium" | "large" | "xlarge";
+
+interface HeadingProps {
+    level?: 1 | 2 | 3 | 4 | 5 | 6; // Define los niveles de encabezados H1-H6
+    variant?: Variant; // Variantes de color
+    size?: Size; // Tamaños
+    className?: string; // Clases personalizadas
+}
+
+type Props<Tag extends HTMLTag> = Polymorphic<{ as: Tag }> & HeadingProps;
+
+const {
+    level = 1,
+    variant = "primary",
+    size = "medium",
+    className = "",
+}: HeadingProps = Astro.props;
+
+// Clases por variante de texto
+const textClasses = {
+    primary: "text-neutral-100",
+    secondary: "text-gray-500",
+    success: "text-lime-600",
+    warning: "text-yellow-600",
+    danger: "text-red-600",
+    info: "text-blue-600",
+};
+
+// Clases por tamaño
+const sizeClasses = {
+    small: "text-base font-normal",
+    medium: "text-lg font-semibold",
+    large: "text-xl font-bold",
+    xlarge: "text-2xl font-extrabold",
+};
+
+// Combinar clases finales
+const classes = `${textClasses[variant]} ${sizeClasses[size]} ${className} tracking-wide`;
+
+const Tag = `h${level}`;
+---
+
+<Tag class:list={classes}>
+    <slot />
+</Tag>

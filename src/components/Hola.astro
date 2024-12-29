@@ -1,0 +1,125 @@
+---
+import Button from "@components/Button.astro";
+import Icon from "@assets/icon.astro";
+import Trash from "@assets/trash.astro";
+import Line from "@assets/line.astro";
+---
+
+<section
+    class="flex flex-col space-y-12 items-center justify-center bg-neutral-950 p-24"
+>
+    <Button
+        variant="primary"
+        size="medium"
+        className="uppercase font-bold rounded-xl"
+        id="btn-1"
+    >
+        Click Me <Icon />
+    </Button>
+
+    <Button
+        variant="secondary"
+        size="medium"
+        className="uppercase font-bold rounded-xl"
+        id="btn-2"
+    >
+        Click Me <Icon />
+    </Button>
+
+    <Button
+        variant="success"
+        size="medium"
+        className="uppercase font-bold rounded-lg"
+        id="btn-3"
+    >
+        Click Me <Icon />
+    </Button>
+
+    <Button
+        variant="warning"
+        size="medium"
+        className="uppercase font-bold"
+        id="btn-4"
+        skew
+    >
+        Click Me <Icon />
+    </Button>
+
+    <Button
+        variant="danger"
+        size="medium"
+        className="uppercase font-bold"
+        id="btn-5"
+        skew
+    >
+        Click Me <Line />
+    </Button>
+
+    <Button
+        variant="danger2"
+        size="medium"
+        className="uppercase font-bold rounded-lg "
+        id="btn-6"
+    >
+        Click Me <Trash />
+    </Button>
+
+    <Button
+        variant="info"
+        size="medium"
+        className="uppercase font-bold "
+        id="btn-7"
+    >
+        Click Me <Icon />
+    </Button>
+
+    <Button
+        variant="danger2"
+        size="large"
+        className="uppercase font-bold rounded-xl"
+        id="btn-8"
+    >
+        Click Me <Trash />
+    </Button>
+
+    <Button
+        variant="success"
+        size="icon"
+        className="uppercase font-bold rounded-xl "
+        id="btn-9"
+    >
+        <Icon />
+    </Button>
+
+    <Button
+        variant="danger2"
+        size="icon"
+        className="uppercase font-bold rounded-xl "
+        id="delete-btn"
+    >
+        <Trash />
+    </Button>
+</section>
+
+<script>
+    const btn1 = document.getElementById("btn-1");
+    if (btn1) {
+        btn1.addEventListener("click", () => {
+            alert("btn 1");
+        });
+    }
+
+    const btn2 = document.getElementById("btn-2");
+    if (btn2) {
+        btn2.addEventListener("click", () => {
+            alert("btn 2");
+        });
+    }
+
+    const btn3 = document.getElementById("btn-3");
+    if (btn3) {
+        btn3.addEventListener("click", () => {
+            alert("btn 3");
+        });
+    }
+</script>

@@ -1,0 +1,50 @@
+---
+import Checkbox from "@components/Checkbox.astro";
+import Icon from "@assets/icon.astro";
+---
+
+<section
+    class="flex flex-col space-y-12 items-center justify-center bg-neutral-950 p-24"
+>
+    <Checkbox
+        variant="primary"
+        size="small"
+        className="uppercase font-bold rounded-full"
+        id="checkbox-1"
+        checked
+        label="Checkbox 1"
+    />
+
+    <Checkbox
+        variant="secondary"
+        size="medium"
+        className="uppercase font-bold"
+        id="checkbox-3"
+        label="Checkbox 3"
+    />
+
+    <Checkbox
+        id="my-checkbox"
+        variant="success"
+        size="large"
+        className="rounded-full"
+        label="Acepto los términos y condiciones"
+    />
+
+    <Checkbox
+        variant="danger"
+        size="xlarge"
+        className="uppercase font-bold"
+        id="checkbox-2"
+        label="Checkbox 2"
+    />
+
+    <Checkbox
+        variant="info"
+        size="xlarge"
+        className="uppercase font-bold rounded-md"
+        id="checkbox-4"
+        label="Checkbox 4"
+        checked
+    />
+</section>
