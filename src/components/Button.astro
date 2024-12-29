@@ -1,77 +1,63 @@
 ---
 // Define los posibles valores para las propiedades 'variant' y 'size'.
-type Variant =
-  | "primary"
-  | "secondary"
-  | "danger"
-  | "success"
-  | "warning"
-  | "danger2"
-  | "info";
-type Size = "small" | "medium" | "large" | "xlarge" | "icon";
+type Variant = 'primary' | 'secondary' | 'danger' | 'success' | 'warning' | 'danger2' | 'info';
+type Size = 'small' | 'medium' | 'large' | 'xlarge' | 'icon';
 
 // Props del componente con tipos estrictos.
 interface ButtonProps {
-  variant?: Variant;
-  size?: Size;
-  className?: string;
-  type?: "button" | "submit" | "reset";
-  id?: string;
-  skew?: boolean;
-  disabled?: boolean;
+	variant?: Variant;
+	size?: Size;
+	className?: string;
+	type?: 'button' | 'submit' | 'reset';
+	id?: string;
+	skew?: boolean;
+	disabled?: boolean;
 }
 
 // Extraemos las props con un tipo explícito.
 const {
-  variant = "primary",
-  size = "medium",
-  className = "",
-  type = "button",
-  id = "",
-  skew = false,
-  disabled = false,
+	variant = 'primary',
+	size = 'medium',
+	className = '',
+	type = 'button',
+	id = '',
+	skew = false,
+	disabled = false,
 }: ButtonProps = Astro.props;
 
 // Clases proseeterminadas por variante.
 const variantClasses = {
-  primary: "bg-zinc-50 text-neutral-950 border-2 border-white hover:text-white",
-  secondary:
-    "bg-neutral-700/30 text-white border-2 border-neutral-600 hover:border-neutral-500/30 ",
-  success:
-    "bg-lime-500 text-neutral-950 border-2 border-lime-800  hover:text-white hover:border-lime-500",
-  warning:
-    "bg-yellow-400 text-neutral-950 border-2 border-yellow-700  hover:text-white hover:border-yellow-400 ",
-  danger:
-    "bg-rose-800 text-white border-2 border-rose-200  hover:text-neutral-950 hover:border-rose-800",
-  danger2:
-    "bg-rose-500/10 text-rose-500 border-2 border-rose-500 hover:text-white hover:border-rose-300 ",
-  info: "bg-fuchsia-700 text-white border-2 border-fuchsia-950 hover:border-fuchsia-700",
+	primary: 'bg-zinc-50 text-neutral-950 border-2 border-white hover:text-white',
+	secondary: 'bg-neutral-700/30 text-white border-2 border-neutral-600 hover:border-neutral-500/30 ',
+	success: 'bg-lime-500 text-neutral-950 border-2 border-lime-800  hover:text-white hover:border-lime-500',
+	warning: 'bg-yellow-400 text-neutral-950 border-2 border-yellow-700  hover:text-white hover:border-yellow-400 ',
+	danger: 'bg-rose-800 text-white border-2 border-rose-200  hover:text-neutral-950 hover:border-rose-800',
+	danger2: 'bg-rose-500/10 text-rose-500 border-2 border-rose-500 hover:text-white hover:border-rose-300 ',
+	info: 'bg-fuchsia-700 text-white border-2 border-fuchsia-950 hover:border-fuchsia-700',
 };
 
 const bgVariants = {
-  primary: "bg-neutral-800",
-  secondary: "bg-neutral-900/50",
-  success: "bg-lime-800",
-  warning: "bg-yellow-700",
-  danger: "bg-red-400",
-  danger2: "bg-rose-700/70",
-  info: "bg-fuchsia-950",
+	primary: 'bg-neutral-800',
+	secondary: 'bg-neutral-900/50',
+	success: 'bg-lime-800',
+	warning: 'bg-yellow-700',
+	danger: 'bg-red-400',
+	danger2: 'bg-rose-700/70',
+	info: 'bg-fuchsia-950',
 };
 
 // Clases proseeterminadas por tamaño.
 const sizeClasses = {
-  small: "px-4 py-2 text-sm",
-  medium: "px-6 py-3 text-base",
-  large: "px-8 py-4 text-lg",
-  xlarge: "px-10 py-5 text-xl",
-  icon: "px-2 py-2 text-base",
+	small: 'px-4 py-2 text-sm',
+	medium: 'px-6 py-3 text-base',
+	large: 'px-8 py-4 text-lg',
+	xlarge: 'px-10 py-5 text-xl',
+	icon: 'px-2 py-2 text-base',
 };
 
-const skewClass = skew ? "skew-x-[-20deg]" : "";
+const skewClass = skew ? 'skew-x-[-20deg]' : '';
 
-const disabledClass = disabled
-  ? "disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100"
-  : "";
+const disabledClass = disabled ? 'disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100' : '';
 
 // Combinar clases finales.
 const classes = `${variantClasses[variant]} ${sizeClasses[size]} ${className} ${skewClass} ${disabledClass} transition-all active:scale-95 inline-flex items-center justify-center border-dashed relative overflow-hidden group`;
@@ -80,8 +66,8 @@ const classSpanHover = `absolute w-0 h-0 transition-all duration-500 ease-out ${
 ---
 
 <button type={type} class={classes} id={id} disabled={disabled}>
-  <span class={classSpanHover}> </span>
-  <span class="relative inline-flex items-center justify-center gap-2">
-    <slot />
-  </span>
+	<span class={classSpanHover}> </span>
+	<span class="relative inline-flex items-center justify-center gap-2">
+		<slot />
+	</span>
 </button>

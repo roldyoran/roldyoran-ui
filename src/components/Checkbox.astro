@@ -1,78 +1,62 @@
 ---
-type Variant =
-    | "primary"
-    | "secondary"
-    | "danger"
-    | "success"
-    | "warning"
-    | "info";
-type Size = "small" | "medium" | "large" | "xlarge";
+type Variant = 'primary' | 'secondary' | 'danger' | 'success' | 'warning' | 'info';
+type Size = 'small' | 'medium' | 'large' | 'xlarge';
 
 interface CheckboxProps {
-    variant?: Variant;
-    size?: Size;
-    className?: string;
-    id?: string;
-    disabled?: boolean;
-    checked?: boolean;
-    label?: string;
+	variant?: Variant;
+	size?: Size;
+	className?: string;
+	id?: string;
+	disabled?: boolean;
+	checked?: boolean;
+	label?: string;
 }
 
 const {
-    variant = "primary",
-    size = "medium",
-    className = "",
-    id = "",
-    disabled = false,
-    checked = false,
-    label = "",
+	variant = 'primary',
+	size = 'medium',
+	className = '',
+	id = '',
+	disabled = false,
+	checked = false,
+	label = '',
 }: CheckboxProps = Astro.props;
 
 const variantClasses = {
-    primary:
-        "focus:ring-neutral-200 checked:bg-neutral-200 checked:border-neutral-950 border-neutral-200",
-    secondary:
-        " focus:ring-stone-500 checked:bg-stone-500 checked:border-stone-950 border-stone-700",
-    success:
-        " focus:ring-lime-500 checked:bg-lime-500 checked:border-lime-950 border-lime-500",
-    warning:
-        " focus:ring-yellow-500 checked:bg-yellow-500 checked:border-yellow-950 border-yellow-700",
-    danger: " focus:ring-red-500 checked:bg-red-500 checked:border-red-950 border-red-700",
-    info: " focus:ring-purple-500 checked:bg-purple-500 checked:border-purple-950 border-purple-700",
+	primary: 'focus:ring-neutral-200 checked:bg-neutral-200 checked:border-neutral-950 border-neutral-200',
+	secondary: ' focus:ring-stone-500 checked:bg-stone-500 checked:border-stone-950 border-stone-700',
+	success: ' focus:ring-lime-500 checked:bg-lime-500 checked:border-lime-950 border-lime-500',
+	warning: ' focus:ring-yellow-500 checked:bg-yellow-500 checked:border-yellow-950 border-yellow-700',
+	danger: ' focus:ring-red-500 checked:bg-red-500 checked:border-red-950 border-red-700',
+	info: ' focus:ring-purple-500 checked:bg-purple-500 checked:border-purple-950 border-purple-700',
 };
 
 const textClasses = {
-    primary: "text-neutral-200",
-    secondary: "text-stone-500",
-    success: "text-lime-500",
-    warning: "text-yellow-500",
-    danger: "text-red-500",
-    info: "text-purple-500",
+	primary: 'text-neutral-200',
+	secondary: 'text-stone-500',
+	success: 'text-lime-500',
+	warning: 'text-yellow-500',
+	danger: 'text-red-500',
+	info: 'text-purple-500',
 };
 
 const sizeClasses = {
-    small: "w-4 h-4",
-    medium: "w-5 h-5",
-    large: "w-6 h-6",
-    xlarge: "w-7 h-7",
+	small: 'w-4 h-4',
+	medium: 'w-5 h-5',
+	large: 'w-6 h-6',
+	xlarge: 'w-7 h-7',
 };
 
-const disabledClass = disabled
-    ? "opacity-50 cursor-not-allowed"
-    : "cursor-pointer group-hover:cursor-pointer ";
+const disabledClass = disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer group-hover:cursor-pointer ';
 
 const spanClasses = `${textClasses[variant]} ${disabledClass}`;
 
 const classes = `${variantClasses[variant]} ${sizeClasses[size]} ${disabledClass} ${className} transition-all duration-500 ease-in-out appearance-none group border-2 border-dashed checked:border-solid  `;
 ---
 
-<label class="flex items-center gap-2 group hover:cursor-pointer">
-    <input
-        type="checkbox"
-        class={classes}
-        id={id}
-        disabled={disabled}
-        checked={checked}
-    />
-    <span class={spanClasses}>fasdf</span>
+<label class="group flex items-center gap-2 hover:cursor-pointer">
+	<input type="checkbox" class={classes} id={id} disabled={disabled} checked={checked} />
+	<span class={spanClasses}>
+		{label}
+	</span>
 </label>
